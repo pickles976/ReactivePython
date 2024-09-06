@@ -56,7 +56,7 @@ def makeStore(data: dict):
 
 ### Example
 
-```
+```python
 from src.sleek import makeStore
 
 data = makeStore({
@@ -67,6 +67,10 @@ data = makeStore({
 # Sugar for adding an effect, same as: `effect(lambda: print(data.jobs.value))`
 data.jobs += lambda: print(f"Job: {data.jobs.value}")
 data.jobs.value = 6
+
+# Create a derived value
+double = derived(lambda: data.jobs.value * 2)
+double += lambda: print(f"Job Double: {data.jobs.value}")
 
 data.experiments += lambda: print(f"Experiments: {data.experiments.value}")
 data.experiments.value += ["Experiment 1"]
